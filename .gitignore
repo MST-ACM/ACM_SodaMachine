@@ -1,7 +1,0 @@
-*.md
-Documentation/
-sodamachine/logs/
-*.pyc
-sodamachine/__pycache__/
-sodamachine/backups/
-*.log

@@ -1,0 +1,3 @@
+ATTRS{idVendor}=="0403", ATTRS{idProduct}=="c630", SUBSYSTEMS=="usb", ACTION=="add", MODE="0660", GROUP="plugdev" SYMLINK+="lcd2usb"
+ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SUBSYSTEMS=="usb", ACTION=="add", MODE="0660", GROUP="plugdev" SYMLINK+="arduino"
+ATTRS{idVendor}=="c216", ATTRS{idProduct}=="0180", SUBSYSTEMS=="usb", ACTION=="add", MODE="0660", GROUP="plugdev" SYMLINK+="cardreader"
