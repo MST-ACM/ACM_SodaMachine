@@ -1,0 +1,72 @@
+#!/usr/bin/python
+
+# Soda machine admin program
+# by Ron Young
+# run smadmin in a terminal to see usage
+
+from sodamachine.admin import *
+import argparse
+import sys
+
+def main():
+  parser = argparse.ArgumentParser()
+  group = parser.add_mutually_exclusive_group()
+  
+  group.add_argument("-c", "--change", help="Change user amount", const=True, action="store_const", default=False)
+  group.add_argument("-u", "--adduser", help="Add a new user", const=True, action="store_const", default=False)
+  group.add_argument("-f", "--remove", help="Remove users", const=True, action="store_const", default=False)
+  group.add_argument("-i", "--increase", help="Increase user amount",  const=True, action="store_const", default=False)
+  
+  parser.add_argument("-b", "--backup", help="Backup database", const=True, action="store_const", default=False)
+  parser.add_argument("-r", "--restore", help="Restore database", const=True, action="store_const", default=False)
+  parser.add_argument("-d", "--display", help="Display user table", const=True, action="store_const", default=False)
+  parser.add_argument("id", help="User ID number", default="", nargs='?')
+  parser.add_argument("amount", help="Amount of money", default="", nargs='?')
+  parser.add_argument("fname", help="First name", default="", nargs='?')
+  parser.add_argument("lname", help="Last name", default="", nargs='?')
+  parser.add_argument("rfid", help="User RFID number", default=None, nargs='?')
+ # parser.add_argument("-v", "--verbose", help="Enabled verbose messages--does nothing", const=True, action="store_const", default=False)
+  
+  args = parser.parse_args()  
+  
+  if args.restore:
+    restore.main()
+  if args.adduser:
+    if args.id == "" or args.amount == "" or args.lname == "" or args.fname == "":
+      print "usage: smadmin -u id amount first_name last_name [rfid]"
+      print "smadmin: error: required parameters not provided"
+      sys.exit()
+    else:
+      addUser.main(args.id, args.amount, args.fname, args.lname, args.rfid)
+  elif args.change:
+    if args.id == "" or args.amount == "":
+      print "usage: smadmin -c id amount"
+      print "smadmin: error: required parameters not provided"
+      sys.exit()
+    else:
+      changeAmount.main(args.id, args.amount)
+  elif args.remove:
+    if args.id == "":
+      print "usage: smadmin -f id"
+      print "smadmin: error: required parameters not provided"
+      sys.exit()
+    else:
+      removeUsers.main(args.id)
+  elif args.increase:
+    if args.id == "" or args.amount == "":
+      print "usage: smadmin -i id amount"
+      print "smadmin: error: required parameters not provided"
+    else:
+      changeAmount.main(args.id, args.amount)
+  if args.display:
+    if args.id != "":
+      display.main(args.id)
+    else:
+      display.main("")
+  elif not len(sys.argv) > 1:
+    parser.print_help()
+  if args.backup:
+    smdump.main()
+
+if __name__ == "__main__":
+  main()
