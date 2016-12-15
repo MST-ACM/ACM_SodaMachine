@@ -1,7 +1,7 @@
 #/usr/bin/env python
 import sys, os, time, atexit
 sys.path.append('/home/pi/Soda-Machine/')
-from sodamachine.settings import LOG_PATH
+from sodamachine.settings import DAEMON_LOG_PATH
 from signal import SIGTERM 
 
 class Daemon:
@@ -10,7 +10,7 @@ class Daemon:
   
   Usage: subclass the Daemon class and override the run() method
   """
-  def __init__(self, pidfile, stdin=LOG_PATH, stdout=LOG_PATH, stderr=LOG_PATH):
+  def __init__(self, pidfile, stdin=DAEMON_LOG_PATH, stdout=DAEMON_LOG_PATH, stderr=DAEMON_LOG_PATH):
     self.stdin = stdin
     self.stdout = stdout
     self.stderr = stderr

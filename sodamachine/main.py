@@ -18,7 +18,7 @@ from sodamachine.admin import *
 # To import LCD object from the lcd module
 from sodamachine.lcd import LCD
 # To import Magstrip object from sodamag module
-from sodamachine.sodamag import MagStrip
+from sodamachine.magreader import MagStrip
 ##
 
 def main():
