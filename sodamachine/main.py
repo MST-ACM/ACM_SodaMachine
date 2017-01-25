@@ -126,7 +126,7 @@ def transactionHandler(ser, mag, lcd, sodaCost):
         processTransaction(result, ser, mag, lcd, sodaCost, transLogger)
 
 def authorizeTransaction(mag, lcd):
-        lcd.write('Authorizing ...', 1)
+        lcd.write('Authorizing ...', 2)
         ####
         # Attempt to check for user
         ####
@@ -164,7 +164,7 @@ def processTransaction(result, ser, mag, lcd, sodaCost, logger):
 
         logger.debug(sucmsg)
         # Output Make Selection to LCD
-        lcd.write('Hello %s' % fname, 1)
+        lcd.write('Hello %s' % fname, 2)
         lcd.write('Please make\na selection', .1)
         try:
             # Send authorized to Arduino
